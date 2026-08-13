@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  variant?: "accent" | "ghost";
+  external?: boolean;
+}
+
+const { href, variant = "accent", external = false } = Astro.props;
+const cls =
+  variant === "accent"
+    ? "bg-accent text-bg hover:bg-accent-hover"
+    : "border border-line text-fg hover:border-fg hover:bg-surface";
+const arrowCls = variant === "accent" ? "text-bg/70" : "text-fg-muted";
+---
+
+<a
+  href={href}
+  {...(external ? { target: "_blank", rel: "noopener" } : {})}
+  class:list={[
+    cls,
+    "group inline-flex items-center justify-center gap-3 px-7 py-3.5 text-sm font-medium tracking-wide transition-colors",
+  ]}
+>
+  <slot />
+  <span class:list={[arrowCls, "font-mono transition-transform duration-300 group-hover:translate-x-1"]} aria-hidden="true">→</span>
+</a>

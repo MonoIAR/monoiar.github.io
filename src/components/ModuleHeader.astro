@@ -1,0 +1,19 @@
+---
+interface Props {
+  no: string;
+  label: string;
+  title: string;
+  sub?: string;
+}
+
+const { no, label, title, sub } = Astro.props;
+---
+
+<div>
+  <p class="kicker flex items-center gap-2">
+    <span class="block size-1.5 bg-accent" aria-hidden="true"></span>
+    MODULE {no} // {label}
+  </p>
+  <h2 class="section-title mt-4">{title}</h2>
+  {sub && <p class="mt-4 max-w-2xl text-sm leading-relaxed text-fg-muted md:text-base">{sub}</p>}
+</div>

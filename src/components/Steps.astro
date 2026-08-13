@@ -1,0 +1,26 @@
+---
+interface Step {
+  title: string;
+  desc?: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<ol class="divide-y divide-line border border-line bg-surface">
+  {steps.map((s, i) => (
+    <li class="grid gap-3 p-6 sm:grid-cols-[3rem_1fr] sm:gap-6">
+      <span class="font-mono text-sm tracking-widest text-fg-faint" aria-hidden="true">
+        0{i + 1}
+      </span>
+      <div>
+        <h3 class="font-medium">{s.title}</h3>
+        {s.desc && <p class="mt-1.5 text-sm leading-relaxed text-fg-muted">{s.desc}</p>}
+      </div>
+    </li>
+  ))}
+</ol>

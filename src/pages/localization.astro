@@ -1,0 +1,145 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ModuleHeader from "../components/ModuleHeader.astro";
+import CTA from "../components/CTA.astro";
+import Steps from "../components/Steps.astro";
+import Faq from "../components/Faq.astro";
+
+const installSteps = [
+  {
+    title: "下载汉化包",
+    desc: "点击下方按钮，下载最新版本的汉化压缩包。",
+  },
+  {
+    title: "解压文件",
+    desc: "将压缩包解压至任意目录，得到汉化文件。",
+  },
+  {
+    title: "覆盖游戏目录",
+    desc: "将解压后的文件覆盖至 BONELAB 安装目录的对应位置。",
+  },
+  {
+    title: "启动游戏",
+    desc: "启动 BONELAB，游戏内即为中文界面。",
+  },
+];
+
+const changelog = [
+  { version: "v1.0.0", date: "2026-08", note: "首个正式版本，完成主菜单与核心流程汉化。" },
+  { version: "v0.9.1", date: "2026-07", note: "修正部分界面错位与字符溢出问题。" },
+  { version: "v0.9.0", date: "2026-06", note: "内测版本，初步完成主要界面汉化。" },
+];
+
+const faqs = [
+  {
+    q: "汉化包会影响正版游戏吗？",
+    a: "不影响。汉化包仅替换游戏内的文本资源，不会修改游戏本体或联网状态。",
+  },
+  {
+    q: "如何反馈翻译错误？",
+    a: "你可以在 QQ 群内反馈，我们会尽快修正，并在下一个版本中更新。",
+  },
+  {
+    q: "游戏更新后汉化会失效吗？",
+    a: "游戏更新可能导致部分文本失效，我们会在新版本发布后尽快跟进适配。",
+  },
+];
+---
+
+<Layout title="汉化包 // MIAR">
+
+  <!-- 页首 -->
+  <section class="relative overflow-hidden border-b border-line">
+    <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-5xl px-6 py-16 md:py-20">
+      <p class="kicker">Localization // 汉化包</p>
+      <h1 class="mt-5 font-mono text-4xl font-medium uppercase tracking-[0.18em] md:text-6xl">
+        汉化包
+      </h1>
+      <p class="mt-5 max-w-2xl text-sm leading-relaxed text-fg-muted md:text-base">
+        MIAR 出品的 BONELAB 中文汉化包，由社区持续维护，覆盖主菜单与核心游戏流程。
+      </p>
+    </div>
+  </section>
+
+  <!-- 下载面板 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-6 py-14 md:py-20">
+      <div class="grid gap-8 border border-line bg-surface p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-12 md:p-10">
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
+          <div>
+            <p class="kicker">Version</p>
+            <p class="mt-2 font-mono text-lg text-fg">v1.0.0</p>
+          </div>
+          <div>
+            <p class="kicker">Size</p>
+            <p class="mt-2 font-mono text-lg text-fg">—</p>
+          </div>
+          <div>
+            <p class="kicker">Support</p>
+            <p class="mt-2 font-mono text-lg text-fg">BONELAB 1.x</p>
+          </div>
+          <div>
+            <p class="kicker">Platform</p>
+            <p class="mt-2 font-mono text-lg text-fg">PCVR</p>
+          </div>
+        </div>
+        <div class="md:justify-self-end">
+          <CTA href="#">下载汉化包</CTA>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安装步骤 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
+      <ModuleHeader no="01" label="Install" title="安装步骤" sub="几步即可完成汉化。" />
+      <div class="mt-10 max-w-3xl">
+        <Steps steps={installSteps} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 更新日志 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
+      <ModuleHeader no="02" label="Changelog" title="更新日志" />
+      <ul class="mt-10 max-w-3xl divide-y divide-line border border-line bg-surface">
+        {changelog.map((c) => (
+          <li class="grid gap-2 px-6 py-5 sm:grid-cols-[7rem_6rem_1fr] sm:items-baseline sm:gap-6">
+            <span class="font-mono text-fg">{c.version}</span>
+            <span class="font-mono text-xs tracking-widest text-fg-faint">{c.date}</span>
+            <p class="text-sm leading-relaxed text-fg-muted">{c.note}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
+      <ModuleHeader no="03" label="Faq" title="常见问题" />
+      <div class="mt-10 max-w-3xl">
+        <Faq items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 CTA -->
+  <section>
+    <div class="mx-auto max-w-5xl px-6 py-20 text-center md:py-28">
+      <p class="kicker">Contribute // 参与进来</p>
+      <h2 class="section-title mt-4">想一起完善汉化？</h2>
+      <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-fg-muted md:text-base">
+        欢迎加入 MIAR，参与汉化、测试与社区建设。
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <CTA external href="https://qm.qq.com/q/q9ZTy7J7R6">加入 QQ 群</CTA>
+        <CTA href="/#intro" variant="ghost">返回首页</CTA>
+      </div>
+    </div>
+  </section>
+
+</Layout>

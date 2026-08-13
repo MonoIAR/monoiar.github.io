@@ -1,0 +1,22 @@
+---
+interface Props {
+  name: string;
+  role: string;
+}
+
+const { name, role } = Astro.props;
+const initial = name.slice(0, 1);
+---
+
+<article class="flex items-center gap-4 border border-line bg-surface p-6 transition-colors hover:border-fg/40">
+  <div
+    class="flex size-12 shrink-0 items-center justify-center border border-line bg-surface-2 font-mono text-lg text-fg-muted"
+    aria-hidden="true"
+  >
+    {initial}
+  </div>
+  <div class="min-w-0">
+    <h3 class="font-medium">{name}</h3>
+    <p class="mt-1 truncate font-mono text-[11px] uppercase tracking-widest text-fg-faint">{role}</p>
+  </div>
+</article>
