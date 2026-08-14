@@ -1,0 +1,45 @@
+---
+import BilibiliIcon from './icons/BilibiliIcon.astro';
+
+interface Props {
+  role: string;
+  name: string;
+  desc: string;
+  /** 哔哩哔哩主页地址；留空则显示为占位链接（点击弹提示） */
+  bilibili?: string;
+}
+
+const { role, name, desc, bilibili = '' } = Astro.props;
+
+// 有真实链接 → 新标签页打开；占位 → href="#" + 点击弹提示
+const link = bilibili
+  ? { href: bilibili, target: '_blank', rel: 'noopener' }
+  : { href: '#', 'data-alert': `占位符：${name} 的哔哩哔哩主页链接待补充` };
+---
+
+<div
+  class="hud-box p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 group hover:border-brand-accent transition-colors"
+>
+  <div
+    class="w-16 h-16 shrink-0 bg-brand-bg border border-brand-border flex items-center justify-center font-mono font-bold text-xl text-brand-textMuted group-hover:border-brand-accent group-hover:text-white transition-colors relative"
+  >
+    <span>STAFF</span>
+    <span class="absolute bottom-0 right-0 w-2 h-2 bg-brand-accent"></span>
+  </div>
+
+  <div class="flex-1 min-w-0">
+    <span class="text-[10px] font-mono text-brand-accent uppercase block tracking-wider"
+      >{role}</span
+    >
+    <h3 class="font-mono font-bold text-lg text-white">{name}</h3>
+    <p class="text-xs text-brand-textMuted mt-1 font-sans">{desc}</p>
+  </div>
+
+  <a
+    {...link}
+    class="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 bg-brand-surface border border-brand-border hover:border-bilibili text-xs font-mono text-white transition-colors"
+  >
+    <BilibiliIcon class="w-4 h-4 text-bilibili" />
+    哔哩哔哩
+  </a>
+</div>

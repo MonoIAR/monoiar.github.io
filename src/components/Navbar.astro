@@ -1,0 +1,72 @@
+---
+import MenuIcon from './icons/MenuIcon.astro';
+
+const links = [
+  { href: '#localization', num: '01', label: '汉化包' },
+  { href: '#servers', num: '02', label: '联机服务器' },
+  { href: '#staff', num: '03', label: '核心 STAFF' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-brand-bg/90 backdrop-blur-md border-b border-brand-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div
+        class="w-8 h-8 bg-brand-surface border border-brand-border flex items-center justify-center relative font-mono font-bold text-lg group-hover:border-brand-accent transition-colors"
+      >
+        <span class="text-white">M</span>
+        <span class="absolute top-0 right-0 w-1.5 h-1.5 bg-brand-accent"></span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-mono font-bold tracking-wider text-lg leading-none"
+          >MIAR <span class="text-brand-accent text-xs">// LAB</span></span
+        >
+        <span class="text-[10px] font-mono text-brand-textMuted tracking-widest uppercase"
+          >BONELAB CN COMMUNITY</span
+        >
+      </div>
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-mono tracking-wide">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="text-brand-textMuted hover:text-white transition-colors flex items-center gap-1.5"
+          >
+            <span class="text-brand-accent font-bold text-xs">{link.num}.</span>{' '}
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button
+      id="mobileMenuBtn"
+      type="button"
+      class="md:hidden text-brand-textMuted hover:text-white focus:outline-none"
+      aria-label="打开菜单"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <MenuIcon />
+    </button>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div
+    id="mobileMenu"
+    class="hidden md:hidden border-b border-brand-border bg-brand-surface px-4 py-4 space-y-3 font-mono text-sm"
+  >
+    {
+      links.map((link) => (
+        <a href={link.href} class="block text-brand-textMuted hover:text-white"
+          >{link.num}. {link.label}</a
+        >
+      ))
+    }
+  </div>
+</header>

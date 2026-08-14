@@ -1,0 +1,131 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import DownloadIcon from './icons/DownloadIcon.astro';
+---
+
+<section id="localization" class="scroll-mt-24 space-y-8">
+  <SectionHeading
+    num="01."
+    title="汉化包下载 // LOCALIZATION PACK"
+    tag="BUILD_RELEASE_v2.4"
+  />
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Main Download Box -->
+    <div class="hud-box p-6 lg:col-span-2 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-brand-border pb-4">
+        <div>
+          <span class="text-xs font-mono text-brand-accent block">[RELEASE_NAME]</span>
+          <h3 class="text-xl font-mono font-bold text-white">MIAR 汉化补丁完整包</h3>
+        </div>
+        <div class="text-right font-mono">
+          <span class="text-xs text-brand-textMuted block">FILE_SIZE</span>
+          <span class="text-sm font-bold text-white">142.5 MB</span>
+        </div>
+      </div>
+
+      <!-- Details Placeholder -->
+      <div class="space-y-3 text-sm text-brand-textMuted">
+        <p class="text-white font-mono text-xs">[更新日志 / CHANGELOG Placeholder]:</p>
+        <ul class="list-disc list-inside space-y-1 font-sans text-xs md:text-sm">
+          <li>PLACEHOLDER</li>
+          <li>PLACEHOLDER</li>
+          <li>PLACEHOLDER</li>
+          <li>PLACEHOLDER</li>
+        </ul>
+      </div>
+
+      <!-- Download Buttons Group -->
+      <div class="pt-4 flex flex-wrap gap-4 font-mono text-sm border-t border-brand-border">
+        <a
+          href="#"
+          data-alert="占位符：正在触发汉化包直接下载"
+          class="bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-2.5 font-bold transition-all flex items-center gap-2 clip-corner"
+        >
+          <DownloadIcon />
+          主线路下载 (高速)
+        </a>
+        <a
+          href="#"
+          data-alert="占位符：正在触发网盘备用下载"
+          class="bg-brand-surface border border-brand-border hover:border-white text-white px-5 py-2.5 font-bold transition-all flex items-center gap-2 clip-corner"
+        >
+          备用网盘下载 [百度/夸克]
+        </a>
+      </div>
+    </div>
+
+    <!-- Installation Quick Guide -->
+    <div class="bg-brand-surface border border-brand-border p-6 flex flex-col justify-between space-y-4">
+      <div>
+        <div class="flex items-center justify-between border-b border-brand-border pb-3 mb-4">
+          <h4 class="font-mono font-bold text-sm text-white uppercase">安装说明 // GUIDE</h4>
+          <!-- Platform Toggle Buttons -->
+          <div class="flex font-mono text-[10px]">
+            <button
+              id="btnPc"
+              type="button"
+              class="px-2 py-1 bg-brand-accent text-white font-bold"
+            >
+              PCVR
+            </button>
+            <button
+              id="btnQuest"
+              type="button"
+              class="px-2 py-1 bg-brand-bg text-brand-textMuted border border-brand-border"
+            >
+              QUEST
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide Content PCVR -->
+        <div id="guidePc" class="space-y-3 font-mono text-xs text-brand-textMuted">
+          <div class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold">01.</span>
+            <span>下载并解压 MIAR 汉化压缩包。</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold">02.</span>
+            <span
+              >将文件放入 <code class="text-white bg-black/40 px-1">.../BONELAB_Data/Plugins/</code
+              >{' '}目录下。</span
+            >
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold">03.</span>
+            <span>启动游戏，在游戏设置内切换语言为 [中文]。</span>
+          </div>
+        </div>
+
+        <!-- Guide Content Quest -->
+        <div id="guideQuest" class="hidden space-y-3 font-mono text-xs text-brand-textMuted">
+          <div class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold">01.</span>
+            <span>使用 SideQuest 或文件管理器连接 VR 头显。</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold">02.</span>
+            <span
+              >定位至 <code class="text-white bg-black/40 px-1"
+                >Android/data/com.StressLevelZero.BONELAB/files/</code
+              >。</span
+            >
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold">03.</span>
+            <span>覆盖汉化补丁文件后重启设备即可。</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hash Verification Box -->
+      <div class="bg-brand-bg border border-brand-border p-3 font-mono text-[11px] space-y-1">
+        <span class="text-brand-textMuted block">SHA256 CHECKSUM (VERIFY):</span>
+        <div class="text-white truncate font-mono select-all">
+          e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
