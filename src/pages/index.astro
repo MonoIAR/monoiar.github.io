@@ -14,12 +14,12 @@ const servers = [
 ];
 
 const staff = [
-  { name: "MIAR·团长", role: "项目统筹 / 创始人" },
-  { name: "MIAR·运营", role: "社区管理" },
-  { name: "MIAR·汉化组", role: "汉化组组长" },
-  { name: "MIAR·技术", role: "技术维护" },
-  { name: "MIAR·设计", role: "视觉设计" },
-  { name: "MIAR·外联", role: "对外联络" },
+  { name: "MIAR·团长", role: "项目统筹 / 创始人", social: { label: "Bilibili", href: "https://space.bilibili.com/" } },
+  { name: "MIAR·运营", role: "社区管理", social: { label: "QQ", href: "https://qm.qq.com/q/q9ZTy7J7R6" } },
+  { name: "MIAR·汉化组", role: "汉化组组长", social: { label: "Discord", href: "https://discord.gg/" } },
+  { name: "MIAR·技术", role: "技术维护", social: { label: "GitHub", href: "https://github.com/" } },
+  { name: "MIAR·设计", role: "视觉设计", social: { label: "X", href: "https://x.com/" } },
+  { name: "MIAR·外联", role: "对外联络", social: { label: "Bilibili", href: "https://space.bilibili.com/" } },
 ];
 
 const joinSteps = [
@@ -145,9 +145,9 @@ const joinSteps = [
         sub="社区的核心成员，负责项目的长期运转。"
       />
 
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {staff.map((m) => <StaffCard {...m} />)}
-      </div>
+      <ul class="mt-12 divide-y divide-line border border-line bg-surface">
+        {staff.map((m, i) => <StaffCard index={String(i + 1).padStart(2, "0")} {...m} />)}
+      </ul>
     </div>
   </section>
 
