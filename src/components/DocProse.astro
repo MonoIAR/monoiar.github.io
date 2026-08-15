@@ -1,0 +1,11 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<article class={`hud-box doc-prose p-6 md:p-10 ${className ?? ''}`}>
+  <slot />
+</article>

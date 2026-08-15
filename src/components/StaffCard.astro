@@ -7,9 +7,11 @@ interface Props {
   desc: string;
   /** 哔哩哔哩主页地址；留空则显示为占位链接（点击弹提示） */
   bilibili?: string;
+  /** 头像图片地址（建议 512x512，放入 public/staff/ 下引用）；留空则显示 STAFF 文本 */
+  avatar?: string;
 }
 
-const { role, name, desc, bilibili = '' } = Astro.props;
+const { role, name, desc, bilibili = '', avatar = '' } = Astro.props;
 
 // 有真实链接 → 新标签页打开；占位 → href="#" + 点击弹提示
 const link = bilibili
@@ -21,9 +23,20 @@ const link = bilibili
   class="hud-box p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 group hover:border-brand-accent transition-colors"
 >
   <div
-    class="w-16 h-16 shrink-0 bg-brand-bg border border-brand-border flex items-center justify-center font-mono font-bold text-xl text-brand-textMuted group-hover:border-brand-accent group-hover:text-white transition-colors relative"
+    class="w-16 h-16 shrink-0 bg-brand-bg border border-brand-border flex items-center justify-center font-mono font-bold text-xl text-brand-textMuted group-hover:border-brand-accent group-hover:text-white transition-colors relative overflow-hidden"
   >
-    <span>STAFF</span>
+    {
+      avatar ? (
+        <img
+          src={avatar}
+          alt={`${name} 的头像`}
+          loading="lazy"
+          class="w-full h-full object-cover"
+        />
+      ) : (
+        <span>STAFF</span>
+      )
+    }
     <span class="absolute bottom-0 right-0 w-2 h-2 bg-brand-accent"></span>
   </div>
 

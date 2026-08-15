@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ArrowIcon from '../../components/icons/ArrowIcon.astro';
+import { getCollection } from 'astro:content';
+
+const docs = (await getCollection('docs'))
+  .filter((doc) => !doc.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const formatDate = (d?: Date): string => (d ? d.toISOString().slice(0, 10) : '—');
+---
+
+<BaseLayout title="文档索引 // MIAR" description="MIAR 社区文档 — 汉化、安装、联机与常见问题">
+  <section class="space-y-8">
+    <SectionHeading num="00." title="文档索引 // DOCUMENTATION" tag="CONTENT_COLLECTION" />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {docs.map((doc) => (
+        <a href={`./${doc.id}/`} class="hud-box p-6 space-y-3 block group">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs font-mono px-2 py-0.5 bg-brand-bg border border-brand-border text-brand-accent font-bold truncate">
+              {doc.data.category}
+            </span>
+            <time class="text-xs font-mono text-brand-textMuted shrink-0" datetime={doc.data.updated ? doc.data.updated.toISOString() : undefined}>
+              {formatDate(doc.data.updated)}
+            </time>
+          </div>
+          <h2 class="text-lg font-mono font-bold text-white group-hover:text-brand-accent transition-colors">
+            {doc.data.title}
+          </h2>
+          <p class="text-sm text-brand-textMuted font-sans">{doc.data.description}</p>
+          <div class="flex items-center justify-between pt-3 border-t border-brand-border">
+            <span class="font-mono text-xs text-brand-textMuted">阅读文档</span>
+            <ArrowIcon class="w-4 h-4 text-brand-accent group-hover:translate-x-1 transition-transform" />
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DocProse from '../../components/DocProse.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs
+    .filter((doc) => !doc.data.draft)
+    .sort((a, b) => a.data.order - b.data.order)
+    .map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+
+interface Props {
+  doc: CollectionEntry<'docs'>;
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await render(doc);
+const { title, description, category, updated, toc } = doc.data;
+const updatedStr = updated ? updated.toISOString().slice(0, 10) : null;
+const tocHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+<BaseLayout title={`${title} // MIAR文档`} description={description}>
+  <div class="max-w-3xl mx-auto w-full space-y-8">
+    <a
+      href="../"
+      class="inline-flex items-center gap-2 font-mono text-xs text-brand-textMuted hover:text-white transition-colors"
+    >
+      <span class="text-brand-accent font-bold text-sm">[←]</span> 返回文档索引
+    </a>
+
+    <header class="space-y-3 pb-6 border-b border-brand-border">
+      <div class="flex flex-wrap items-center gap-2 font-mono">
+        <span class="text-xs px-2 py-0.5 bg-brand-bg border border-brand-border text-brand-accent font-bold">
+          {category}
+        </span>
+        {updatedStr && <span class="text-xs text-brand-textMuted">UPDATED: {updatedStr}</span>}
+      </div>
+      <h1 class="font-mono font-bold uppercase tracking-wide text-3xl">{title}</h1>
+      <p class="text-sm md:text-base text-brand-textMuted font-sans">{description}</p>
+    </header>
+
+    {toc && tocHeadings.length > 1 && (
+      <nav class="hud-box p-5 space-y-2 font-mono text-sm" aria-label="目录">
+        <p class="text-xs font-bold text-brand-accent tracking-widest uppercase">[TOC] 本页目录</p>
+        <ul class="space-y-1.5">
+          {tocHeadings.map((h) => (
+            <li style={{ paddingLeft: `${(h.depth - 2) * 1.25}rem` }}>
+              <a href={`#${h.slug}`} class="text-brand-textMuted hover:text-white transition-colors">
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <DocProse>
+      <Content />
+    </DocProse>
+  </div>
+</BaseLayout>
