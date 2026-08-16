@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------
-   MIAR LAB — Design tokens
-   Tailwind v4 theme. Values ported from pure-html/website.html.
-------------------------------------------------------------------- */
 @theme {
   /* Brand palette */
   --color-brand-bg: #0d0e11;           /* Deep Charcoal Grey */
@@ -13,13 +9,11 @@
   --color-brand-accentHover: #d8432e;
   --color-brand-text: #ffffff;         /* Pure White Foreground */
   --color-brand-textMuted: #8e93a0;    /* Muted Grey Text */
-
-  /* Bilibili brand color (STAFF 板块 B站 按钮) */
-  --color-bilibili: #fb7299;
+  --color-bilibili: #00a1d6;
 
   /* Typography */
   --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Noto Sans SC", "Noto Sans", "Source Han Sans SC", sans-serif;
 }
 
 /* ------------------------------------------------------------------

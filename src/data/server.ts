@@ -15,7 +15,7 @@ export const SERVER_API_STATUS_URL = `${SERVER_API_BASE_URL}${SERVER_API_STATUS_
 // ---- 卡片展示信息（接口不提供的静态文案） ---------------------------------
 export const SERVER_TAG = 'MIAR // PUBLIC';
 export const SERVER_NAME = 'MIAR 官方联机服务器';
-export const SERVER_DESCRIPTION = '【占位符】官方公共沙盒联机服务器，基于 Fusion Mod 运行。';
+export const SERVER_DESCRIPTION = '使用自研的 Fusion 专用服务器插件，实现24小时在线，随时可以加入';
 
 // ---- BONELAB 关卡 UUID → 地图名 -------------------------------------------
 // 接口只返回关卡 UUID（currentLevel），想显示可读地图名请在这里补充映射；

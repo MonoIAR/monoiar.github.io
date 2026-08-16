@@ -5,15 +5,12 @@ interface Props {
   role: string;
   name: string;
   desc: string;
-  /** 哔哩哔哩主页地址；留空则显示为占位链接（点击弹提示） */
   bilibili?: string;
-  /** 头像图片地址（建议 512x512，放入 public/staff/ 下引用）；留空则显示 STAFF 文本 */
   avatar?: string;
 }
 
 const { role, name, desc, bilibili = '', avatar = '' } = Astro.props;
 
-// 有真实链接 → 新标签页打开；占位 → href="#" + 点击弹提示
 const link = bilibili
   ? { href: bilibili, target: '_blank', rel: 'noopener' }
   : { href: '#', 'data-alert': `占位符：${name} 的哔哩哔哩主页链接待补充` };
@@ -29,7 +26,7 @@ const link = bilibili
       avatar ? (
         <img
           src={avatar}
-          alt={`${name} 的头像`}
+          alt={`${name}的头像`}
           loading="lazy"
           class="w-full h-full object-cover"
         />
