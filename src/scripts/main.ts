@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // MIAR LAB — client interactions
 // Mobile menu toggle, copy-to-clipboard with toast, placeholder alerts,
-// PCVR/QUEST installation-guide tabs, and live server status.
+// and live server status.
 // ---------------------------------------------------------------------------
 
 import { SERVER_API_STATUS_URL, LEVEL_NAMES } from '../data/server';
@@ -71,30 +71,6 @@ if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.setAttribute('aria-expanded', String(!isNowHidden));
   });
 }
-
-/* ------------------- Installation guide tab switching --------------------- */
-
-function switchGuide(type: 'pc' | 'quest'): void {
-  const guidePc = document.getElementById('guidePc');
-  const guideQuest = document.getElementById('guideQuest');
-  if (!guidePc || !guideQuest) return;
-
-  const isPc = type === 'pc';
-  guidePc.classList.toggle('hidden', !isPc);
-  guideQuest.classList.toggle('hidden', isPc);
-
-  const btnPc = document.getElementById('btnPc');
-  const btnQuest = document.getElementById('btnQuest');
-  if (!btnPc || !btnQuest) return;
-
-  const active = 'px-2 py-1 bg-brand-accent text-white font-bold';
-  const inactive = 'px-2 py-1 bg-brand-bg text-brand-textMuted border border-brand-border';
-  btnPc.className = isPc ? active : inactive;
-  btnQuest.className = isPc ? inactive : active;
-}
-
-document.getElementById('btnPc')?.addEventListener('click', () => switchGuide('pc'));
-document.getElementById('btnQuest')?.addEventListener('click', () => switchGuide('quest'));
 
 /* ----------------------- 联机服务器实时状态 -------------------------------- */
 /* 从 src/data/server.ts 配置的接口拉取 Fusion 服务器状态，填充服务器卡片。    */

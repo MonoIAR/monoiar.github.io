@@ -4,7 +4,7 @@ import ServerCard from './ServerCard.astro';
 ---
 
 <section id="servers" class="scroll-mt-24 space-y-8">
-  <SectionHeading num="02." title="自建联机服务器 // SERVERS" tag="FUSION_MOD_SUPPORTED" />
+  <SectionHeading num="02." title="自建联机服务器 // DEDICATED SERVER" tag="SERVER" />
 
   <!-- 服务器状态由 scripts/main.ts 从 src/data/server.ts 配置的接口实时拉取 -->
   <div class="grid grid-cols-1 gap-6 md:max-w-2xl">
@@ -18,7 +18,7 @@ import ServerCard from './ServerCard.astro';
     <div class="flex items-center gap-3">
       <span class="text-brand-accent font-bold text-lg">[!]</span>
       <span class="text-brand-textMuted"
-        >联机提示：服务器需依赖 Fusion Mod。请确保已安装最新版 BONELAB Fusion 补丁。</span
+        >目前该部分并不完善，我们还没想到稳定获取服务器状态的方法。</span
       >
     </div>
     <a
@@ -26,7 +26,7 @@ import ServerCard from './ServerCard.astro';
       data-alert="占位符：跳转至联机常见问题与模组下载页"
       class="text-white underline hover:text-brand-accent transition-colors shrink-0"
     >
-      查看联机配置教程 &rarr;
+      PLACEHOLDER &rarr;
     </a>
   </div>
 </section>

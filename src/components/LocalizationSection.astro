@@ -1,131 +1,77 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import DownloadIcon from './icons/DownloadIcon.astro';
+import GithubIcon from './icons/GithubIcon.astro';
+import DocIcon from './icons/DocIcon.astro';
+
+const GITHUB_URL = 'https://github.com/MonoIAR/PJ_LabLocalizer/releases/';
+const INSTALL_DOCS_URL = '/docs/install-bonelab-zh/';
+
+const githubLink = GITHUB_URL
+  ? { href: GITHUB_URL, target: '_blank', rel: 'noopener' }
+  : { href: '#', 'data-alert': '占位符：GitHub 仓库地址待补充' };
+
+const features = [
+  {
+    label: '[TEXT]',
+    title: '文本汉化',
+    desc: '完整翻译 BONELAB 的剧情与系统文本，完全由人工翻译和校对，让中文玩家无缝沉浸于 Stress Level Zero 的世界观。',
+  },
+  {
+    label: '[TEXTURE]',
+    title: '贴图汉化',
+    desc: '我们自己做了贴图替换模组，然后人工绘制了中文版本的贴图，使得部分设定更易于理解。',
+  },
+  {
+    label: '[SUBTITLE]',
+    title: '字幕模组',
+    desc: '由于游戏大体剧情通过语音呈现，所以我们为BONELAB带来了字幕，这也是我们区别于常规汉化包的核心卖点。',
+  },
+];
 ---
 
 <section id="localization" class="scroll-mt-24 space-y-8">
-  <SectionHeading
-    num="01."
-    title="汉化包下载 // LOCALIZATION PACK"
-    tag="BUILD_RELEASE_v2.4"
-  />
+  <SectionHeading num="01." title="BONELAB-ZH 汉化包 // Project LabLocalizer" tag="LOCALIZATION" />
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- Main Download Box -->
-    <div class="hud-box p-6 lg:col-span-2 space-y-6">
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-brand-border pb-4">
-        <div>
-          <span class="text-xs font-mono text-brand-accent block">[RELEASE_NAME]</span>
-          <h3 class="text-xl font-mono font-bold text-white">MIAR 汉化补丁完整包</h3>
-        </div>
-        <div class="text-right font-mono">
-          <span class="text-xs text-brand-textMuted block">FILE_SIZE</span>
-          <span class="text-sm font-bold text-white">142.5 MB</span>
-        </div>
-      </div>
+  <div class="hud-box p-8 space-y-8">
+    <!-- 简介 -->
+    <p class="max-w-3xl text-sm md:text-base text-brand-textMuted leading-relaxed font-sans">
+      BONELAB-ZH 不仅覆盖了
+      <span class="text-white font-semibold">文本汉化</span>
+      与
+      <span class="text-white font-semibold">贴图汉化</span>，
+      更包含STAFF团队
+      <span class="text-brand-accent font-semibold">自研的字幕模组</span>
+      ——带来有别于常规汉化包的完整体验。
+    </p>
 
-      <!-- Details Placeholder -->
-      <div class="space-y-3 text-sm text-brand-textMuted">
-        <p class="text-white font-mono text-xs">[更新日志 / CHANGELOG Placeholder]:</p>
-        <ul class="list-disc list-inside space-y-1 font-sans text-xs md:text-sm">
-          <li>PLACEHOLDER</li>
-          <li>PLACEHOLDER</li>
-          <li>PLACEHOLDER</li>
-          <li>PLACEHOLDER</li>
-        </ul>
-      </div>
-
-      <!-- Download Buttons Group -->
-      <div class="pt-4 flex flex-wrap gap-4 font-mono text-sm border-t border-brand-border">
-        <a
-          href="#"
-          data-alert="占位符：正在触发汉化包直接下载"
-          class="bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-2.5 font-bold transition-all flex items-center gap-2 clip-corner"
-        >
-          <DownloadIcon />
-          主线路下载 (高速)
-        </a>
-        <a
-          href="#"
-          data-alert="占位符：正在触发网盘备用下载"
-          class="bg-brand-surface border border-brand-border hover:border-white text-white px-5 py-2.5 font-bold transition-all flex items-center gap-2 clip-corner"
-        >
-          备用网盘下载 [百度/夸克]
-        </a>
-      </div>
+    <!-- 三大卖点 -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        features.map((f) => (
+          <div class="hud-box p-5 group hover:border-brand-accent transition-colors">
+            <h3 class="font-mono font-bold text-white mt-3">{f.title}</h3>
+            <p class="text-xs text-brand-textMuted mt-1 font-sans leading-relaxed">{f.desc}</p>
+          </div>
+        ))
+      }
     </div>
 
-    <!-- Installation Quick Guide -->
-    <div class="bg-brand-surface border border-brand-border p-6 flex flex-col justify-between space-y-4">
-      <div>
-        <div class="flex items-center justify-between border-b border-brand-border pb-3 mb-4">
-          <h4 class="font-mono font-bold text-sm text-white uppercase">安装说明 // GUIDE</h4>
-          <!-- Platform Toggle Buttons -->
-          <div class="flex font-mono text-[10px]">
-            <button
-              id="btnPc"
-              type="button"
-              class="px-2 py-1 bg-brand-accent text-white font-bold"
-            >
-              PCVR
-            </button>
-            <button
-              id="btnQuest"
-              type="button"
-              class="px-2 py-1 bg-brand-bg text-brand-textMuted border border-brand-border"
-            >
-              QUEST
-            </button>
-          </div>
-        </div>
-
-        <!-- Guide Content PCVR -->
-        <div id="guidePc" class="space-y-3 font-mono text-xs text-brand-textMuted">
-          <div class="flex items-start gap-2">
-            <span class="text-brand-accent font-bold">01.</span>
-            <span>下载并解压 MIAR 汉化压缩包。</span>
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-brand-accent font-bold">02.</span>
-            <span
-              >将文件放入 <code class="text-white bg-black/40 px-1">.../BONELAB_Data/Plugins/</code
-              >{' '}目录下。</span
-            >
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-brand-accent font-bold">03.</span>
-            <span>启动游戏，在游戏设置内切换语言为 [中文]。</span>
-          </div>
-        </div>
-
-        <!-- Guide Content Quest -->
-        <div id="guideQuest" class="hidden space-y-3 font-mono text-xs text-brand-textMuted">
-          <div class="flex items-start gap-2">
-            <span class="text-brand-accent font-bold">01.</span>
-            <span>使用 SideQuest 或文件管理器连接 VR 头显。</span>
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-brand-accent font-bold">02.</span>
-            <span
-              >定位至 <code class="text-white bg-black/40 px-1"
-                >Android/data/com.StressLevelZero.BONELAB/files/</code
-              >。</span
-            >
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-brand-accent font-bold">03.</span>
-            <span>覆盖汉化补丁文件后重启设备即可。</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hash Verification Box -->
-      <div class="bg-brand-bg border border-brand-border p-3 font-mono text-[11px] space-y-1">
-        <span class="text-brand-textMuted block">SHA256 CHECKSUM (VERIFY):</span>
-        <div class="text-white truncate font-mono select-all">
-          e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-        </div>
-      </div>
+    <!-- 操作按钮 -->
+    <div class="flex flex-wrap gap-4 font-mono text-sm pt-2">
+      <a
+        {...githubLink}
+        class="bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-3 font-semibold transition-all flex items-center gap-2 clip-corner glow-accent"
+      >
+        <GithubIcon class="w-4 h-4" />
+        GitHub Releases
+      </a>
+      <a
+        href={INSTALL_DOCS_URL}
+        class="bg-brand-surface border border-brand-border hover:border-white text-white px-6 py-3 font-semibold transition-colors flex items-center gap-2 clip-corner"
+      >
+        <DocIcon class="w-4 h-4 text-brand-accent" />
+        教程文档
+      </a>
     </div>
   </div>
 </section>
