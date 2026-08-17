@@ -3,22 +3,34 @@ import DownloadIcon from './icons/DownloadIcon.astro';
 import ArrowIcon from './icons/ArrowIcon.astro';
 ---
 
-<section class="relative pt-8 pb-12 md:py-20 flex flex-col items-start border-b border-brand-border">
+<section
+  class="relative overflow-hidden pt-8 pb-12 md:py-20 flex flex-col items-start border-b border-brand-border"
+>
+  <!-- 氛围层：扫描光束 + 呼吸光晕（背后，pointer-events: none） -->
+  <div aria-hidden="true" class="ambient-scan animate-hud-scan motion-reduce:animate-none"></div>
+  <div aria-hidden="true" class="ambient-glow animate-glow-breathe motion-reduce:animate-none"></div>
+
   <!-- Hero Main Headline -->
-  <h1 class="text-4xl md:text-6xl lg:text-7xl font-mono font-extrabold tracking-tight text-white mb-6 uppercase">
+  <h1
+    data-hero-reveal
+    class="text-4xl md:text-6xl lg:text-7xl font-mono font-extrabold tracking-tight text-white mb-6 uppercase"
+  >
     MIAR<span class="text-brand-accent">//</span>
   </h1>
 
-  <p class="text-base md:text-xl text-brand-textMuted max-w-3xl mb-8 leading-relaxed font-sans">
+  <p
+    data-hero-reveal
+    class="text-base md:text-xl text-brand-textMuted max-w-3xl mb-8 leading-relaxed font-sans"
+  >
     我们是 Stress Level Zero 游戏及其世界观的中国社区，非常欢迎你加入我们。<br />
     让我们共同协作让全国玩家集结起来。
   </p>
 
   <!-- Action Buttons -->
-  <div class="flex flex-wrap gap-4 font-mono text-sm">
+  <div data-hero-reveal class="flex flex-wrap gap-4 font-mono text-sm">
     <a
       href="#localization"
-      class="bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-3 font-semibold transition-all flex items-center gap-2 clip-corner glow-accent"
+      class="btn-sheen bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-3 font-semibold transition-all flex items-center gap-2 clip-corner glow-accent"
     >
       <DownloadIcon />
       获取最新汉化包
@@ -27,7 +39,7 @@ import ArrowIcon from './icons/ArrowIcon.astro';
       href="https://qm.qq.com/q/uoOEDEiZPy"
       target="_blank"
       rel="noopener"
-      class="bg-brand-surface border border-brand-border hover:border-white text-white px-6 py-3 font-semibold transition-colors flex items-center gap-2 clip-corner"
+      class="btn-sheen bg-brand-surface border border-brand-border hover:border-white text-white px-6 py-3 font-semibold transition-colors flex items-center gap-2 clip-corner"
     >
       <ArrowIcon class="w-4 h-4 text-brand-accent" />
       前往QQ群

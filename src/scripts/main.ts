@@ -1,18 +1,24 @@
 // ---------------------------------------------------------------------------
 // MIAR LAB — client interactions
 // Mobile menu toggle, copy-to-clipboard with toast, placeholder alerts,
-// and live server status.
+// live server status, scroll progress bar + navbar scroll state.
+//
+// View Transitions note: the bundled module script runs ONCE per page load,
+// while the DOM is swapped on every navigation. All per-element listeners are
+// therefore delegated to the document (survive navigation), and anything that
+// must re-run per page is hooked to `astro:page-load`.
 // ---------------------------------------------------------------------------
 
 import { SERVER_API_STATUS_URL, LEVEL_NAMES } from '../data/server';
 
 /* ---------------------------------- Toast -------------------------------- */
 
-const toast = document.getElementById('toast');
-const toastMsg = document.getElementById('toastMsg');
 let toastTimer: number | undefined;
 
 function showToast(message: string): void {
+  // Toast 节点每次导航后被替换，这里实时重新获取。
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
   if (!toast || !toastMsg) return;
   toastMsg.innerText = message;
   toast.classList.remove('hidden');
@@ -42,35 +48,38 @@ function copyToClipboard(text: string): void {
   }
 }
 
-document.querySelectorAll<HTMLElement>('[data-copy]').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const value = btn.dataset.copy;
+/* --------------------- Document-level event delegation -------------------- */
+/* 顶层绑定一次，跨 View Transitions 导航依然有效。                            */
+
+document.addEventListener('click', (event) => {
+  const target = event.target as HTMLElement | null;
+
+  // 复制房间码 / 占位链接
+  const copyBtn = target?.closest<HTMLElement>('[data-copy]');
+  if (copyBtn) {
+    const value = copyBtn.dataset.copy;
     if (value) copyToClipboard(value);
-  });
-});
+    return;
+  }
 
-/* --------------------------- Placeholder alerts --------------------------- */
-/* These are temporary stubs for links whose destinations do not exist yet.  */
-
-document.querySelectorAll<HTMLElement>('[data-alert]').forEach((el) => {
-  el.addEventListener('click', (event) => {
+  const alertEl = target?.closest<HTMLElement>('[data-alert]');
+  if (alertEl) {
     event.preventDefault();
-    const message = el.dataset.alert;
+    const message = alertEl.dataset.alert;
     if (message) alert(message);
-  });
+    return;
+  }
+
+  // 移动端菜单切换
+  if (target?.closest('#mobileMenuBtn')) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('mobileMenuBtn');
+    if (mobileMenu && btn) {
+      const isNowHidden = mobileMenu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isNowHidden));
+    }
+  }
 });
-
-/* --------------------- Mobile menu toggle --------------------------------- */
-
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-
-if (mobileMenuBtn && mobileMenu) {
-  mobileMenuBtn.addEventListener('click', () => {
-    const isNowHidden = mobileMenu.classList.toggle('hidden');
-    mobileMenuBtn.setAttribute('aria-expanded', String(!isNowHidden));
-  });
-}
 
 /* ----------------------- 联机服务器实时状态 -------------------------------- */
 /* 从 src/data/server.ts 配置的接口拉取 Fusion 服务器状态，填充服务器卡片。    */
@@ -105,9 +114,14 @@ function formatUptime(totalSeconds: number): string {
   return `${hours}时${minutes % 60}分`;
 }
 
+// 更新文案并重放数字微弹动画（.status-pop）。
 function setServerText(id: string, text: string): void {
   const el = document.getElementById(id);
-  if (el) el.textContent = text;
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove('status-pop');
+  void el.offsetWidth; // 强制 reflow，让动画能重新播放
+  el.classList.add('status-pop');
 }
 
 function loadServerStatus(): void {
@@ -142,4 +156,51 @@ function loadServerStatus(): void {
     });
 }
 
+// 首屏由模块顶层拉取一次；后续每次导航（astro:page-load）再拉取。
 loadServerStatus();
+let initialPageLoad = true;
+
+/* --------------------- 滚动进度条 + 导航栏滚动状态 ------------------------ */
+
+function updateScrollUI(): void {
+  const progressBar = document.getElementById('scrollProgress');
+  if (progressBar) {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? window.scrollY / max : 0;
+    progressBar.style.transform = `scaleX(${progress})`;
+  }
+
+  const header = document.getElementById('siteHeader');
+  if (header) {
+    header.classList.toggle('is-scrolled', window.scrollY > 60);
+  }
+}
+
+window.addEventListener('scroll', updateScrollUI, { passive: true });
+window.addEventListener('resize', updateScrollUI, { passive: true });
+
+/* ------------------- GSAP 故障兜底（reveal 元素可见性） -------------------- */
+/* 若首页 GSAP 模块初始化失败（chunk 加载失败等），reveal 元素会一直 opacity:0，
+   这里强制把它们显示出来，避免整页空白。 */
+
+function revealFallback(): void {
+  if (document.documentElement.hasAttribute('data-gsap-ready')) return;
+  document
+    .querySelectorAll<HTMLElement>('[data-reveal], [data-reveal-stagger] > *')
+    .forEach((el) => {
+      el.style.opacity = '1';
+    });
+}
+
+/* ------------------------ 每次页面加载后统一处理 --------------------------- */
+
+document.addEventListener(
+  'astro:page-load',
+  (() => {
+    if (!initialPageLoad) loadServerStatus();
+    initialPageLoad = false;
+    updateScrollUI(); // 导航后立即校正进度条，避免残留上一页的值
+    revealFallback();
+  }) as EventListener,
+);

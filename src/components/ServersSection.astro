@@ -4,7 +4,9 @@ import ServerCard from './ServerCard.astro';
 ---
 
 <section id="servers" class="scroll-mt-24 space-y-8">
-  <SectionHeading num="02." title="自建联机服务器 // DEDICATED SERVER" tag="SERVER" />
+  <div data-reveal>
+    <SectionHeading num="02." title="自建联机服务器 // DEDICATED SERVER" tag="SERVER" />
+  </div>
 
   <!-- 服务器状态由 scripts/main.ts 从 src/data/server.ts 配置的接口实时拉取 -->
   <div class="grid grid-cols-1 gap-6 md:max-w-2xl">
@@ -13,6 +15,7 @@ import ServerCard from './ServerCard.astro';
 
   <!-- Notice for Joining Servers -->
   <div
+    data-reveal
     class="bg-brand-surface border border-brand-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs"
   >
     <div class="flex items-center gap-3">

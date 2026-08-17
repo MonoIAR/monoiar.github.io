@@ -14,6 +14,29 @@
   /* Typography */
   --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
   --font-sans: "Noto Sans SC", "Noto Sans", "Source Han Sans SC", sans-serif;
+
+  /* Ambient loop animations (homepage hero) */
+  --animate-hud-scan: hud-scan 8s ease-in-out infinite alternate;
+  --animate-glow-breathe: glow-breathe 4s ease-in-out infinite alternate;
+
+  @keyframes hud-scan {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(900%);
+    }
+  }
+  @keyframes glow-breathe {
+    0% {
+      opacity: 0.6;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
 }
 
 /* ------------------------------------------------------------------
@@ -302,4 +325,144 @@ body {
   height: auto;
   background-color: var(--color-brand-surface);
   border: 1px solid var(--color-brand-border);
+}
+
+/* ------------------------------------------------------------------
+   Motion — scroll reveals (GSAP on the homepage)
+   Only hidden when the `.js` class is present (progressive enhancement:
+   no-JS / reduced-motion users always see the content).
+------------------------------------------------------------------- */
+.js [data-reveal],
+.js [data-reveal-stagger] > * {
+  opacity: 0;
+}
+
+/* ------------------------------------------------------------------
+   Motion — view transition keyframes (pure opacity, dark-theme safe)
+------------------------------------------------------------------- */
+@keyframes hud-vt-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes hud-vt-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion — server status number pop-in (replayed by scripts/main.ts)
+------------------------------------------------------------------- */
+.status-pop {
+  animation: status-pop 0.45s ease-out both;
+}
+@keyframes status-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion — HUD card hover micro-interaction (homepage components)
+   Note: un-layered so it overrides Tailwind's transition-colors, hence
+   border-color is included in its transition list.
+------------------------------------------------------------------- */
+.hud-interactive {
+  transition:
+    transform 0.25s ease-out,
+    border-color 0.25s ease-out,
+    box-shadow 0.25s ease-out;
+}
+.hud-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(240, 81, 59, 0.35),
+    0 8px 24px rgba(240, 81, 59, 0.08),
+    0 0 30px rgba(240, 81, 59, 0.05);
+}
+
+/* ------------------------------------------------------------------
+   Motion — optional button sheen sweep on clip-corner CTAs
+------------------------------------------------------------------- */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  transition: transform 0.5s ease-out;
+  pointer-events: none;
+}
+.btn-sheen:hover::after {
+  transform: translateX(320%) skewX(-18deg);
+}
+
+/* ------------------------------------------------------------------
+   Motion — hero ambient layers (behind content, pointer-events: none)
+------------------------------------------------------------------- */
+.ambient-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(240, 81, 59, 0.06), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+.ambient-glow {
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  width: 360px;
+  height: 200px;
+  background: radial-gradient(closest-side, rgba(240, 81, 59, 0.1), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ------------------------------------------------------------------
+   Scroll progress bar + navbar scroll state
+------------------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-brand-accent);
+  box-shadow: 0 0 8px rgba(240, 81, 59, 0.6);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 60;
+  pointer-events: none;
+  will-change: transform;
+}
+#siteHeader {
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+#siteHeader.is-scrolled {
+  background-color: rgba(13, 14, 17, 0.97);
+  box-shadow: 0 1px 0 rgba(240, 81, 59, 0.15);
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion — force reveal targets visible, no GSAP involved
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-reveal-stagger] > * {
+    opacity: 1;
+  }
 }

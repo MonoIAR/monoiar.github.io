@@ -30,11 +30,13 @@ const features = [
 ---
 
 <section id="localization" class="scroll-mt-24 space-y-8">
-  <SectionHeading num="01." title="BONELAB-ZH 汉化包 // Project LabLocalizer" tag="LOCALIZATION" />
+  <div data-reveal>
+    <SectionHeading num="01." title="BONELAB-ZH 汉化包 // Project LabLocalizer" tag="LOCALIZATION" />
+  </div>
 
   <div class="hud-box p-8 space-y-8">
     <!-- 简介 -->
-    <p class="max-w-3xl text-sm md:text-base text-brand-textMuted leading-relaxed font-sans">
+    <p data-reveal class="max-w-3xl text-sm md:text-base text-brand-textMuted leading-relaxed font-sans">
       BONELAB-ZH 不仅覆盖了
       <span class="text-white font-semibold">文本汉化</span>
       与
@@ -45,10 +47,10 @@ const features = [
     </p>
 
     <!-- 三大卖点 -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {
         features.map((f) => (
-          <div class="hud-box p-5 group hover:border-brand-accent transition-colors">
+          <div class="hud-box p-5 group hud-interactive hover:border-brand-accent transition-colors">
             <h3 class="font-mono font-bold text-white mt-3">{f.title}</h3>
             <p class="text-xs text-brand-textMuted mt-1 font-sans leading-relaxed">{f.desc}</p>
           </div>
@@ -57,17 +59,17 @@ const features = [
     </div>
 
     <!-- 操作按钮 -->
-    <div class="flex flex-wrap gap-4 font-mono text-sm pt-2">
+    <div data-reveal class="flex flex-wrap gap-4 font-mono text-sm pt-2">
       <a
         {...githubLink}
-        class="bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-3 font-semibold transition-all flex items-center gap-2 clip-corner glow-accent"
+        class="btn-sheen bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-3 font-semibold transition-all flex items-center gap-2 clip-corner glow-accent"
       >
         <GithubIcon class="w-4 h-4" />
         GitHub Releases
       </a>
       <a
         href={INSTALL_DOCS_URL}
-        class="bg-brand-surface border border-brand-border hover:border-white text-white px-6 py-3 font-semibold transition-colors flex items-center gap-2 clip-corner"
+        class="btn-sheen bg-brand-surface border border-brand-border hover:border-white text-white px-6 py-3 font-semibold transition-colors flex items-center gap-2 clip-corner"
       >
         <DocIcon class="w-4 h-4 text-brand-accent" />
         教程文档
