@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArrowIcon from '../components/icons/ArrowIcon.astro';
+---
+
+<BaseLayout>
+<section
+  class="relative overflow-hidden pt-8 pb-12 md:py-20 flex flex-col items-start border-b border-brand-border"
+>
+  <div aria-hidden="true" class="ambient-scan animate-hud-scan motion-reduce:animate-none"></div>
+  <div aria-hidden="true" class="ambient-glow animate-glow-breathe motion-reduce:animate-none"></div>
+
+  <!-- Hero Main Headline -->
+  <h1
+    data-hero-reveal
+    class="text-4xl md:text-6xl lg:text-7xl font-mono font-extrabold tracking-tight text-white mb-6 uppercase"
+  >
+    ERROR_404<span class="text-brand-accent">//</span>
+  </h1>
+
+  <p
+    data-hero-reveal
+    class="text-base md:text-xl text-brand-textMuted max-w-3xl mb-8 leading-relaxed font-sans"
+  >
+    对不起，你访问的资源可能不存在。<br />
+    请尝试检查地址是否正确，或返回主页继续浏览。
+  </p>
+
+  <!-- Action Buttons -->
+  <div data-hero-reveal class="flex flex-wrap gap-4 font-mono text-sm">
+    <a
+      href="/"
+      class="btn-sheen bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-3 font-semibold transition-all flex items-center gap-2 clip-corner glow-accent"
+    >
+      <ArrowIcon />
+      回到主页
+    </a>
+  </div>
+</section>
+</BaseLayout>
+
+<script>
+  import '../scripts/home.ts';
+</script>
