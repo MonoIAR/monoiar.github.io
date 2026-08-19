@@ -12,7 +12,7 @@ import { SERVER_TAG, SERVER_NAME, SERVER_DESCRIPTION } from '../data/server';
     </span>
     <!-- 状态由 scripts/main.ts 实时填充：运行中 / 离线 / 无法连接 -->
     <span id="serverStatus" class="flex items-center gap-1.5 text-xs font-mono text-brand-textMuted">
-      <span class="w-2 h-2 rounded-full bg-brand-border animate-pulse"></span> 连接中…
+      <span class="w-2 h-2 rounded-full bg-brand-border animate-pulse"></span> 尝试拉取中…
     </span>
   </div>
 
@@ -44,11 +44,11 @@ import { SERVER_TAG, SERVER_NAME, SERVER_DESCRIPTION } from '../data/server';
     <button
       id="serverCopyBtn"
       type="button"
-      data-copy=""
+      data-copy="s203.singsi.cn:19364"
       class="px-3 py-1.5 bg-brand-surface border border-brand-border hover:border-brand-accent text-xs font-mono text-white transition-colors flex items-center gap-1"
     >
       <CopyIcon class="w-3.5 h-3.5 text-brand-accent" />
-      复制房间码
+      复制服务器地址
     </button>
   </div>
 </div>
