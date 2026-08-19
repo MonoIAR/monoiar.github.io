@@ -4,7 +4,7 @@ description: 从零开始安装 BONELAB-ZH 汉化包的完整流程，包含 PCV
 order: 1
 category: 入门
 tags: ["安装", "汉化包"]
-updated: 2026-08-16
+updated: 2026-08-20
 toc: true
 ---
 
@@ -32,20 +32,20 @@ PCVR 具有 **自动安装** 和 **手动安装** 两种安装办法，可以取
 
 1. 在下载完成后，把它放在你的游戏文件夹里，在这个目录里你应当能看见UnityCrashHandler和游戏本体exe也在这里。
 
-2. 点开 BonelabModManager，选择 `汉化`，或者侧边栏第二个地球图标选项。
+2. 点开 BonelabModManager，选择 `汉化`，或者说侧边栏第二个地球图标选项。
 
-3. 点击 `检测运行库` 按钮，它可能会弹出一个“Windows Desktop 运行时”安装程序，安装。
+3. 点击 `检测运行库` 按钮，它可能会弹出一个写着“Windows Desktop 运行时”的安装程序，点击安装。
 
 4. 点击安装汉化，等待安装完成
 
-5. 开始游戏
+5. 开始游戏检查是否生效，若有问题，可查看[FAQ](/docs/faq)
 
 ### 手动安装
 
 如果你想挑战一下你自己的话，也可以，以下是手动安装指南。
 
 请先确保你可以稳定访问GitHub。
-如果你没有给你的BONELAB安装 MenlonLoader ，点击[此处](https://github.com/LavaGang/MelonLoader/releases/download/v0.7.3/MelonLoader.Installer.exe)下载 MelonLoader 安装器，下载完成后将其放入BONELAB游戏根目录，双击运行，选择BONELAB并安装 MelonLoader。
+如果你没有给你的BONELAB安装 MenlonLoader ，点击[此处](https://github.com/LavaGang/MelonLoader/releases/download/latest/MelonLoader.Installer.exe)下载 MelonLoader 安装器，下载完成后将其放入BONELAB游戏根目录，双击运行，选择BONELAB并安装 MelonLoader。
 
 1. 前往[Github](https://github.com/MonoIAR/PJ_LabLocalizer/releases/download/1.0.0/bonelab-zh.zip) 或者[QQ群文件](https://qm.qq.com/q/rMVy0k64Ra)下载`bonelab-zh.zip`。
 
