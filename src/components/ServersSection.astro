@@ -1,6 +1,7 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import ServerCard from './ServerCard.astro';
+import Notice from './NoticeWithLink.astro';
 ---
 
 <section id="servers" class="scroll-mt-24 space-y-8">
@@ -13,23 +14,10 @@ import ServerCard from './ServerCard.astro';
     <ServerCard />
   </div>
 
-  <!-- Notice for Joining Servers -->
-  <div
-    data-reveal
-    class="bg-brand-surface border border-brand-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs"
-  >
-    <div class="flex items-center gap-3">
-      <span class="text-brand-accent font-bold text-lg">[!]</span>
-      <span class="text-brand-textMuted"
-        >目前该部分并不完善，我们还没想到稳定获取服务器状态的方法。</span
-      >
-    </div>
-    <a
-      href="#"
-      data-alert="占位符：跳转至联机常见问题与模组下载页"
-      class="text-white underline hover:text-brand-accent transition-colors shrink-0"
-    >
-      PLACEHOLDER &rarr;
-    </a>
-  </div>
+  <Notice
+    icon="!"
+    content="目前该部分并不完善，我们还没想到稳定获取服务器状态的方法。"
+    link="javascript:alert('占位符链接')"
+    linkText="如何使用服务器插件"
+  />
 </section>

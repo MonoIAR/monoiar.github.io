@@ -1,6 +1,7 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import StaffCard from './StaffCard.astro';
+import Notice from './Notice.astro';
 
 const staff = [
   {
@@ -38,17 +39,7 @@ const staff = [
   <div data-reveal>
     <SectionHeading num="03." title="STAFF 团队 //" tag="MIAR_STAFF_TEAM" />
   </div>
-  <div
-    data-reveal
-    class="bg-brand-surface border border-brand-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs">
-    <div class="flex items-center gap-3">
-      <span class="text-brand-accent font-bold text-lg">[?]</span>
-      <span class="text-brand-textMuted"
-        >这些介绍都是成员自己撰写的，完全不具备参考价值，可能是完全瞎写的。</span
-      >
-    </div>
-  </div>
-
+  <Notice icon="?" content="这些介绍都是成员自己撰写的，完全不具备参考价值，可能是完全瞎写的。" />
   <!-- Staff Profile Rows (一行一个，右侧为哔哩哔哩链接) -->
   <div data-reveal-stagger class="space-y-6">
     {staff.map((member) => <StaffCard {...member} />)}

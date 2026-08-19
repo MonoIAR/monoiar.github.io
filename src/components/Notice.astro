@@ -1,0 +1,15 @@
+---
+interface Props {
+  icon?: string;
+  content: string;
+}
+
+const { icon = "!", content } = Astro.props;
+---
+
+<div data-reveal class="bg-brand-surface border border-brand-border p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs">
+  <div class="flex items-center gap-3">
+    <span class="text-brand-accent font-bold text-lg">[{icon}]</span>
+    <span class="text-brand-textMuted">{content}</span>
+  </div>
+</div>
