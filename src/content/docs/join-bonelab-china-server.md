@@ -37,7 +37,7 @@ toc: true
 
 6. 开始游戏
 
-7. 进入游戏后，按住右手柄的B键(或左手柄的A键)打开快捷菜单，找到偏好设置，点击`FUSION多人联机`,在登录界面点击`Change Layer`,上面的字变成`Dedicated server`再登录。然后粘贴服务器IP s203.singsi.cn:19364 ,找到`Enter Code/输入代码`中输入它，即可进入服务器。
+7. 进入游戏后，按住右手柄的B键(或左手柄的Y键)打开快捷菜单，找到偏好设置，点击`FUSION多人联机`,在登录界面点击`Change Layer`,上面的字变成`Dedicated server`再登录。然后粘贴服务器IP s203.singsi.cn:19364 ,找到`Enter Code/输入代码`中输入它，即可进入服务器。
 
 ## 一体机平台
 
