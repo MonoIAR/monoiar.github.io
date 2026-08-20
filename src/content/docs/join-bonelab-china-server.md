@@ -18,6 +18,7 @@ toc: true
 
 > 我们**绝不会**提供 PICO 移植版的相关教程，还请支持正版游戏。
 
+你必须订阅该[合集](https://mod.io/g/bonelab/c/miarserver/)内的所有Mod以及评论中需手动订阅的[Mod](https://mod.io/g/bonelab/c/miarserver#discussion)
 
 ## PCVR 平台
 
