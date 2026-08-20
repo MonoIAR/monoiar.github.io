@@ -1,15 +1,14 @@
 ---
 title: 如何加入MIAR官方BONELAB服务器
-description: 从零开始安装所需插件并手把手教你如何进入官方服务器，包含 PCVR 与 Quest 双平台说明。
-order: 1
+description: 手把手教你如何加入Fusion专用服务器。
+order: 3
 category: 入门
-tags: ["安装", "国服"]
+tags: ["安装", "国服", "LabFusionServer"]
 updated: 2026-08-20
 toc: true
 ---
 
-
-## 安装前准备
+## 准备
 
 在开始之前，我们将会假设你已经拥有可以稳定访问 GitHub 的网络环境。
 
@@ -25,20 +24,23 @@ toc: true
 请先确保你可以稳定访问GitHub。
 如果你没有给你的BONELAB安装 MenlonLoader ，点击[此处](https://github.com/LavaGang/MelonLoader/releases/download/latest/MelonLoader.Installer.exe)下载 MelonLoader 安装器，下载完成后将其放入BONELAB游戏根目录，双击运行，选择BONELAB并安装 MelonLoader。
 
-1. 前往下载[QQ群文件](https://qm.qq.com/q/rMVy0k64Ra)中的 /最新国服服务器模组/LabFusionServer.dll。
+1. 前往下载[QQ群文件](https://qm.qq.com/q/rMVy0k64Ra)中的 `/最新国服服务器模组/LabFusionServer.dll`。
 
-2. 将LabFusionServer.dll放入BONELAB游戏根目录的Mods文件夹内
+2. `LabFusionServer.dll`是一个Code Mod，所以需要放在BONELAB**游戏安装目录**的Mods子文件夹内。
 
-3. 下载 [LabFusion多人联机Mod](https://gcdn.thunderstore.io/live/repository/packages/Lakatrazz-Fusion-1.14.2.zip)和[Bonelib](https://gcdn.thunderstore.io/live/repository/packages/bonelib-BoneLib-3.2.2.zip)并将其中的内容解压到BONELAB游戏根目录。
+3. 下载 [联机模组（Fusion）](https://thunderstore.io/package/download/Lakatrazz/Fusion/1.14.2/)和[Bonelib](https://thunderstore.io/package/download/bonelib/BoneLib/3.2.2/)并将其中的内容解压到BONELAB游戏安装目录。
 
-4. 下载[Fusion附属包A](https://mod.io/g/bonelab/m/fusion-cosmetics#dependencies)和[Fusion附属包B](https://mod.io/g/bonelab/m/fusion-content#description)并安装。若你不知道如何安装可以看[F&Q](/docs/fag)。
+4. 下载[Fusion装扮包](https://mod.io/g/bonelab/m/fusion-cosmetics#dependencies)和[Fusion核心包](https://mod.io/g/bonelab/m/fusion-content#description)并安装。这两个是SDK Mod，若你不知道如何安装可以看[FAQ](/docs/faq)。
 
-5. 安装[MIAR国服服务器所需Mods](https://mod.io/g/bonelab/c/miarserver#mods)。
+5. 安装[MIAR国服服务器所需Mods](https://mod.io/g/bonelab/c/miarserver)。
 
 6. 开始游戏
 
-7. 进入游戏后，按住右手柄的B键(或左手柄的Y键)打开快捷菜单，找到偏好设置，点击`FUSION多人联机`,在登录界面点击`Change Layer`,上面的字变成`Dedicated server`再登录。然后粘贴服务器IP s203.singsi.cn:19364 ,找到`Enter Code/输入代码`中输入它，即可进入服务器。
+7. 进入游戏后，按住右手柄B键或左手柄Y键（Quest Touch手柄键位），打开快捷菜单，
+找到`Preference`偏好设置，点击`FUSION多人联机`,在登录界面点击`Change Layer`，上面的字变成`Dedicated server`再登录。
+
+8. 然后先复制好服务器的地址：`s203.singsi.cn:19364`。点击Matchmaking菜单，找到`Enter Code/输入代码`界面，粘贴地址，再点击`尝试连接`，即可进入服务器。
 
 ## 一体机平台
 
-目前没有书面指南,安装教程和PCVR差距不大
+暂时没有书面指南，安装流程和PCVR差距不大。
