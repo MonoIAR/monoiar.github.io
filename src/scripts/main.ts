@@ -126,7 +126,6 @@ function setServerText(id: string, text: string): void {
 
 function loadServerStatus(): void {
   const statusEl = document.getElementById('serverStatus');
-  const copyBtn = document.getElementById('serverCopyBtn');
   if (!statusEl) return;
 
   statusEl.innerHTML = SERVER_STATUS_TEXT.loading;
@@ -137,18 +136,20 @@ function loadServerStatus(): void {
       return res.json();
     })
     .then((data: ServerStatus) => {
-      const levelName = LEVEL_NAMES[data.currentLevel] ?? data.currentLevel.slice(0, 8);
+      // 关卡条码形如 "fa53....c4144.Level.VoidG114"，默认取最后一段作为地图名
+      const levelName =
+        LEVEL_NAMES[data.currentLevel] ?? data.currentLevel.split('.').pop() ?? '';
 
       statusEl.innerHTML = data.online
         ? SERVER_STATUS_TEXT.online
         : SERVER_STATUS_TEXT.offline;
       setServerText('serverPlayers', `${data.playerCount} / ${data.maxPlayers}`);
       setServerText('serverMap', levelName || '--');
-      setServerText('serverRoomCode', data.roomCode || '--');
+      // 游戏模式条码同样取最后一段显示，空值视为默认的“沙盒”
+      const gamemode = data.currentGamemode.split('.').pop() ?? '';
+      setServerText('serverGamemode', gamemode || '沙盒');
       setServerText('serverUptime', formatUptime(data.uptimeSeconds));
       setServerText('serverVersion', data.version || '--');
-
-      if (copyBtn && data.roomCode) copyBtn.dataset.copy = data.roomCode;
     })
     .catch(() => {
       // 请求失败：服务器离线、网络不通、或 HTTPS 页面请求 HTTP 接口被浏览器拦截。
