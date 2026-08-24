@@ -4,7 +4,7 @@ description: 从零开始安装 BONELAB-ZH 汉化包的完整流程，包含 PCV
 order: 1
 category: 入门
 tags: ["安装", "汉化包"]
-updated: 2026-08-20
+updated: 2026-08-25
 toc: true
 ---
 
