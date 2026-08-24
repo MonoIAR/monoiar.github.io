@@ -1,10 +1,11 @@
 ---
 import CopyIcon from './icons/CopyIcon.astro';
+import RefreshIcon from './icons/RefreshIcon.astro';
 import {
   SERVER_TAG,
   SERVER_NAME,
   SERVER_DESCRIPTION,
-  SERVER_API_BASE_URL,
+  SERVER_GAME_URL,
 } from '../data/server';
 ---
 
@@ -16,9 +17,20 @@ import {
       {SERVER_TAG}
     </span>
     <!-- 状态由 scripts/main.ts 实时填充：运行中 / 离线 / 无法连接 -->
-    <span id="serverStatus" class="flex items-center gap-1.5 text-xs font-mono text-brand-textMuted">
-      <span class="w-2 h-2 rounded-full bg-brand-border animate-pulse"></span> 尝试拉取中…
-    </span>
+    <div class="flex items-center gap-3">
+      <span id="serverStatus" class="flex items-center gap-1.5 text-xs font-mono text-brand-textMuted">
+        <span class="w-2 h-2 rounded-full bg-brand-border animate-pulse"></span> 尝试拉取中…
+      </span>
+      <button
+        type="button"
+        data-server-refresh
+        aria-label="刷新服务器状态"
+        title="刷新状态"
+        class="p-1 border border-brand-border/60 hover:border-brand-accent text-brand-textMuted hover:text-brand-accent transition-colors"
+      >
+        <RefreshIcon class="w-3 h-3" />
+      </button>
+    </div>
   </div>
 
   <div>
@@ -49,7 +61,7 @@ import {
     <button
       id="serverCopyBtn"
       type="button"
-      data-copy={SERVER_API_BASE_URL}
+      data-copy={SERVER_GAME_URL}
       class="px-3 py-1.5 bg-brand-surface border border-brand-border hover:border-brand-accent text-xs font-mono text-white transition-colors flex items-center gap-1"
     >
       <CopyIcon class="w-3.5 h-3.5 text-brand-accent" />

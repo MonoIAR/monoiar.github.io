@@ -3,10 +3,11 @@
 // 服务器板块的接口地址与展示文案统一在这里维护 —— 修改服务器信息时改这里即可。
 // ---------------------------------------------------------------------------
 
-export const SERVER_PROTOCOL = 'http://';
-
 // 服务器状态接口 Base URL（GET，返回 BONELAB Fusion 服务器状态 JSON）
-export const SERVER_API_BASE_URL = 's203.singsi.cn:19364';
+export const SERVER_PROTOCOL = 'https://';
+export const SERVER_API_BASE_URL = 'miar_server.infdel.qzz.io';
+
+export const SERVER_GAME_URL = 's203.singsi.cn:19364';
 
 // 状态接口路径
 export const SERVER_API_STATUS_PATH = '/api/status';

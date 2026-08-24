@@ -70,6 +70,13 @@ document.addEventListener('click', (event) => {
     return;
   }
 
+  // 手动刷新服务器状态
+  const refreshBtn = target?.closest<HTMLElement>('[data-server-refresh]');
+  if (refreshBtn) {
+    loadServerStatus();
+    return;
+  }
+
   // 移动端菜单切换
   if (target?.closest('#mobileMenuBtn')) {
     const mobileMenu = document.getElementById('mobileMenu');
@@ -124,11 +131,15 @@ function setServerText(id: string, text: string): void {
   el.classList.add('status-pop');
 }
 
+let serverStatusPending = false;
+
 function loadServerStatus(): void {
   const statusEl = document.getElementById('serverStatus');
-  if (!statusEl) return;
+  if (!statusEl || serverStatusPending) return;
 
   statusEl.innerHTML = SERVER_STATUS_TEXT.loading;
+  document.querySelector('[data-server-refresh] svg')?.classList.add('animate-spin');
+  serverStatusPending = true;
 
   fetch(SERVER_API_STATUS_URL)
     .then((res) => {
@@ -154,6 +165,10 @@ function loadServerStatus(): void {
     .catch(() => {
       // 请求失败：服务器离线、网络不通、或 HTTPS 页面请求 HTTP 接口被浏览器拦截。
       statusEl.innerHTML = SERVER_STATUS_TEXT.unreachable;
+    })
+    .finally(() => {
+      serverStatusPending = false;
+      document.querySelector('[data-server-refresh] svg')?.classList.remove('animate-spin');
     });
 }
 
