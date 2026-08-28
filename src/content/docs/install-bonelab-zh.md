@@ -45,7 +45,7 @@ PCVR 具有 **自动安装** 和 **手动安装** 两种安装办法，可以取
 如果你想挑战一下你自己的话，也可以，以下是手动安装指南。
 
 请先确保你可以稳定访问GitHub。
-如果你没有给你的BONELAB安装 MenlonLoader ，点击[此处](https://github.com/LavaGang/MelonLoader/releases/download/latest/MelonLoader.Installer.exe)下载 MelonLoader 安装器，下载完成后双击运行，选择BONELAB后点击 Install。
+如果你没有给你的BONELAB安装 MelonLoader ，点击[此处](https://github.com/LavaGang/MelonLoader/releases/download/latest/MelonLoader.Installer.exe)下载 MelonLoader 安装器，下载完成后双击运行，选择BONELAB后点击 Install。
 
 1. 前往[Github](https://github.com/MonoIAR/PJ_LabLocalizer/releases/download/1.0.0/bonelab-zh.zip) 或者[QQ群文件](https://qm.qq.com/q/rMVy0k64Ra)下载`bonelab-zh.zip`。
 
